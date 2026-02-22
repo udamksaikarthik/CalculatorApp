@@ -1,4 +1,6 @@
-﻿namespace CalculatorApp
+﻿using System.Text.RegularExpressions;
+
+namespace CalculatorApp
 {
     public class Program
     {
@@ -37,13 +39,13 @@
                 {
                     appFlagTxt = appFlagTxt.ToLower();
 
-                    if (!appFlagTxt.Equals("yes") || !!appFlagTxt.Equals("no"))
+                    if (!appFlagTxt.Equals("yes") && !appFlagTxt.Equals("no"))
                     {
                         Console.WriteLine("Invalid response provided. The app continues to run!");
                     }
 
 
-                    if (appFlagTxt.Equals("yes"))
+                    if (appFlagTxt.Equals("no"))
                     {
                         appFlag = false;
                     }
@@ -70,6 +72,10 @@
                 if (userOption.Equals("5"))
                 {
                     Environment.Exit(0);
+                }
+                if(!Regex.IsMatch(userOption, "^[1-5]$"))
+                {
+                    userOption = "Invalid";
                 }
             }
             else

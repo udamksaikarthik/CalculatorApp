@@ -34,25 +34,44 @@ namespace CalculatorApp
 
                 Console.WriteLine("Thank you for using Calculator App. Would you like to perform one more operation(yes/no)?");
 
-                string? appFlagTxt = Console.ReadLine();
-                if (appFlagTxt != null)
+
+                bool appFlagTxtBool = true;
+                while (appFlagTxtBool)
                 {
-                    appFlagTxt = appFlagTxt.ToLower();
-
-                    if (!appFlagTxt.Equals("yes") && !appFlagTxt.Equals("no"))
+                    string? appFlagTxt = GetAppFlagTxt();
+                    if (appFlagTxt != null)
                     {
-                        Console.WriteLine("Invalid response provided. The app continues to run!");
-                    }
 
+                        if (!appFlagTxt.Equals("yes") && !appFlagTxt.Equals("no"))
+                        {
+                            Console.WriteLine($"{appFlagTxt} is Invalid response. Please provide correct response (yes/no).");
+                        }
+                        else
+                        {
+                            appFlagTxtBool = false;
+                        }
 
-                    if (appFlagTxt.Equals("no"))
-                    {
-                        appFlag = false;
+                        if (appFlagTxt.Equals("no"))
+                        {
+                            appFlag = false;
+                        }
                     }
                 }
+            }
+        }
+
+        private static string? GetAppFlagTxt()
+        {
+            string? appFlagTxt = Console.ReadLine();
+            if (appFlagTxt != null)
+            {
+                appFlagTxt = appFlagTxt.ToLower();
+
 
 
             }
+
+            return appFlagTxt;
         }
 
         private static string? getUserOption()
@@ -76,6 +95,7 @@ namespace CalculatorApp
                 if(!Regex.IsMatch(userOption, "^[1-5]$"))
                 {
                     userOption = "Invalid";
+                    Console.WriteLine("Invalid option provided. Please try again selecting the correct option[1-5]:");
                 }
             }
             else

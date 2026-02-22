@@ -92,7 +92,7 @@ namespace CalculatorApp
                 {
                     Environment.Exit(0);
                 }
-                if(!Regex.IsMatch(userOption, "^[1-5]$"))
+                if(!Regex.IsMatch(userOption.Trim(), "^[1-5]$"))
                 {
                     userOption = "Invalid";
                     Console.WriteLine("Invalid option provided. Please try again selecting the correct option[1-5]:");
